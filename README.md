@@ -61,7 +61,7 @@ Routing by score:
 The orchestrator also defines context budgets for handoffs, timeouts per phase, and recovery paths for planning, execution, and integration failures.
 
 ### Specialists with per-agent model and temperature
-Each agent file sets a `model` (`sonnet`, or `opusplan` for planning-heavy roles such as `technical-architect`, `business-strategist`, and `agent-optimizer`). Most also carry a `temperature` value chosen by role: low (0.1) for validators such as `gatekeeper`, `qa-engineer`, and `financial-analyst`; higher (0.6-0.8) for generative roles such as `agent-systems-architect` and `guerilla-marketing-strategist`. Claude Code does not apply `temperature` from subagent frontmatter; the framework uses it as documented intent, and `agent-optimizer` reads and maintains it.
+Each agent file sets a `model` (`sonnet`, or `opus` for planning-heavy roles such as `technical-architect`, `business-strategist`, and `agent-optimizer`). Most also carry a `temperature` value chosen by role: low (0.1) for validators such as `gatekeeper`, `qa-engineer`, and `financial-analyst`; higher (0.6-0.8) for generative roles such as `agent-systems-architect` and `guerilla-marketing-strategist`. Claude Code does not apply `temperature` from subagent frontmatter; the framework uses it as documented intent, and `agent-optimizer` reads and maintains it.
 
 ### Policies as quality gates
 Files in `.claude/policies/` define what "done" means, and agents reference them directly:
@@ -89,7 +89,7 @@ Tickets are YAML files in `.claude/issues/` named `YYYY-MM-DD-HHMMSS-<slug>.yaml
 | gatekeeper | agent-management | Quality validation gate for deliverables | sonnet | 0.1 |
 | session-orchestrator | agent-management | Multi-session workflow state, checkpoints, and parallel execution | sonnet | 0.25 |
 | workflow-orchestrator | agent-management | Multi-agent execution planning | sonnet | 0.25 |
-| agent-systems-architect | engineering | Multi-agent workflow design and governance | opusplan | 0.6 |
+| agent-systems-architect | engineering | Multi-agent workflow design and governance | opus | 0.6 |
 | android-expo-architect | engineering | Android-specific Expo development and optimization | sonnet | 0.15 |
 | cloud-infrastructure-architect | engineering | Cloud infrastructure design, Terraform, AWS/GCP architecture | sonnet | 0.25 |
 | devops-engineer | engineering | CI/CD, infrastructure, deployment automation | sonnet | 0.2 |
@@ -100,20 +100,20 @@ Tickets are YAML files in `.claude/issues/` named `YYYY-MM-DD-HHMMSS-<slug>.yaml
 | react-vite-engineer | engineering | React/Vite applications, TypeScript, Tailwind CSS, front-end build optimization | sonnet | - |
 | security-architect | engineering | Threat modeling, compliance, security design | sonnet | 0.2 |
 | tech-stack-analyst | engineering | Technology evaluation and architecture audit | sonnet | 0.2 |
-| technical-architect | engineering | System design, API and data architecture, roadmaps | opusplan | 0.25 |
+| technical-architect | engineering | System design, API and data architecture, roadmaps | opus | 0.25 |
 | template-systems-developer | engineering | Template engines and systems | sonnet | 0.15 |
 | business-requirements-analyst | business | Strategic requirements and operational planning | sonnet | 0.3 |
-| business-strategist | business | Business models and go-to-market strategies | opusplan | 0.4 |
+| business-strategist | business | Business models and go-to-market strategies | opus | 0.4 |
 | compliance-agent | business | Regulatory compliance and legal documents | sonnet | - |
 | financial-analyst | business | Financial modeling and viability assessment | sonnet | 0.1 |
 | legal-reviewer | business | Legal risk assessment and compliance review | sonnet | 0.1 |
 | project-manager | business | Timeline coordination and deliverable packaging | sonnet | 0.25 |
 | technical-writer | business | API docs, guides, README creation | sonnet | 0.25 |
-| vc-advisor | business | Investment analysis from an investor perspective | opusplan | 0.2 |
+| vc-advisor | business | Investment analysis from an investor perspective | opus | 0.2 |
 | requirements-to-stories | product | Requirements converted to user stories | sonnet | 0.25 |
 | spec-decomposer | product | PRDs decomposed into development phases | sonnet | 0.3 |
 | spec-writer | product | Roadmap phases expanded to developer specs | sonnet | 0.3 |
-| brand-hierarchy-strategist | marketing | Brand architecture and portfolio strategy | opusplan | - |
+| brand-hierarchy-strategist | marketing | Brand architecture and portfolio strategy | opus | - |
 | brand-research-analyst | marketing | Brand auditing and competitive analysis | sonnet | - |
 | branding-specialist | marketing | App branding and visual identity | sonnet | - |
 | content-strategy-agent | marketing | Messaging frameworks and voice guidelines | sonnet | - |
@@ -121,16 +121,15 @@ Tickets are YAML files in `.claude/issues/` named `YYYY-MM-DD-HHMMSS-<slug>.yaml
 | marketing-expert | marketing | App store optimization and user acquisition | sonnet | 0.5 |
 | mobile-app-marketing-expert | marketing | Mobile marketing and growth strategies | sonnet | 0.3 |
 | brand-designer | creative | Visual identity systems and brand assets | sonnet | 0.4 |
-| creative-project-brainstormer | creative | Feature ideation and creative riffing | opusplan | - |
+| creative-project-brainstormer | creative | Feature ideation and creative riffing | opus | - |
 | design-qa-reviewer | creative | Design quality scoring and assessment | sonnet | - |
 | graphic-design-artist | creative | Logos, graphics, marketing visuals | sonnet | 0.9 |
 | senior-frontend-layout-expert | creative | Advanced CSS and layout algorithms | sonnet | - |
 | typography-specialist | creative | Font selection and text hierarchy | sonnet | 0.25 |
-| agent-optimizer | utility | Agent config tuning and optimization | opusplan | 0.2 |
-| ai-prompt-optimizer | utility | Prompt engineering and LLM optimization | opusplan | - |
+| agent-optimizer | utility | Agent config tuning and optimization | opus | 0.2 |
+| ai-prompt-optimizer | utility | Prompt engineering and LLM optimization | opus | - |
 | intent-translator | utility | Requirement clarification into actionable tickets | sonnet | - |
 
-`opusplan` is a Claude Code model alias (Opus for planning, Sonnet for execution). If your Claude Code version does not accept it in subagent frontmatter, change it to `opus` or `sonnet`.
 
 ## Slash commands
 

@@ -1,7 +1,7 @@
 ---
 name: agent-systems-architect
 description: Design and operationalize multi-agent workflows, hooks, and governance. Produces runnable agent files, commands, and compliance checklists for Cursor, Claude Code, and agentic toolchains. Strategic + creative by default; compiles decisions into implementable procedures.
-model: opusplan
+model: opus
 temperature: 0.6
 color: "#7C3AED"
 ---

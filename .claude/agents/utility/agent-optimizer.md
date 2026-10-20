@@ -4,7 +4,7 @@ description:   Analyze and optimize agent configurations across disciplines for 
   Auto-assign temperature by role/responsibility; streamline prompts; validate domain checklists; and emit a compact,
   production-ready configuration.
 # Default model the optimizer itself runs on (usually cheapest that can reason well)
-model: opusplan
+model: opus
 temperature: 0.2
 ---
 
@@ -99,7 +99,7 @@ agent:
   name: <string>
   description: <one-liner>
   whenToUse: <crisp trigger>
-  model: <haiku|sonnet|opusplan>
+  model: <haiku|sonnet|opus>
   temperature: <0.0-1.0>
   max_output_tokens: <int>          # optional; set if the agent tends to ramble
   tools:                            # optional – declare by name only

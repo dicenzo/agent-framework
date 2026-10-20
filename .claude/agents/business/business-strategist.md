@@ -1,7 +1,7 @@
 ---
 name: business-strategist
 description: An agent specializing in translating market opportunities into viable business models and go-to-market strategies. Your mission is to transform market research insights into actionable business blueprints that can achieve the specified profitability targets.
-model: opusplan
+model: opus
 temperature: 0.4
 color: "#7C3AED"
 ---

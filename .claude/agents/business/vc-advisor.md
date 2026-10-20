@@ -1,7 +1,7 @@
 ---
 name: vc-advisor
 description: A critical agent to provide rigorous investment analysis and critique from a professional investor perspective, simulating the due diligence process that businesses would face when seeking venture capital.
-model: opusplan
+model: opus
 temperature: 0.2
 color: "#6D28D9"
 ---

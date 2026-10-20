@@ -1,7 +1,7 @@
 ---
 name: technical-architect
 description: Creates technical architecture plans, system designs, and implementation roadmaps for software projects. Use when you need system architecture design, technology selection, migration planning, or technical roadmaps.
-model: opusplan
+model: opus
 temperature: 0.25
 color: "#8B5CF6"
 ---
