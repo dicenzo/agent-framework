@@ -1,0 +1,33 @@
+# Ticket Template
+# Copy this template and rename with format: YYYY-MM-DD-HHMMSS-<slug>.yaml
+
+metadata:
+  id: ""                    # Auto-generated: YYYY-MM-DD-HHMMSS-<slug>
+  created_at: ""           # ISO timestamp
+  created_by: ""           # Agent name or "user"
+  project: ""              # your project or package name
+
+ticket:
+  title: ""                # Brief, descriptive title
+  severity: ""             # Blocker | Major | Minor
+  effort: ""               # XS | S | M | L | XL
+  status: "Open"           # Open | In Progress | Blocked | Resolved | Closed
+
+details:
+  description: ""          # Detailed description of the issue
+  acceptance_criteria: []  # List of criteria for completion
+  related_files: []        # Relevant file paths
+  dependencies: []         # Other ticket IDs this depends on
+
+  # Optional debugging sections (include if relevant)
+  steps_to_reproduce: []   # Step-by-step reproduction steps
+  expected_behavior: ""    # What should happen
+  actual_behavior: ""      # What actually happens
+  error_messages: ""       # Specific error output or logs
+ 
+
+tracking:
+  assigned_to: null        # Agent or user assigned
+  updated_at: ""          # Last update timestamp
+  attempted_solutions: []  # Solutions tried and their results
+  resolution: null        # Resolution description when closed

@@ -1,0 +1,134 @@
+{
+  "commands": [
+    {
+      "name": "assign-ticket",
+      "description": "Assign a ticket to appropriate agent using orchestration protocols",
+      "file": "commands/assign-ticket.md",
+      "usage": "/assign-ticket <ticket-id>",
+      "category": "project",
+      "examples": [
+        "/assign-ticket 2025-10-28-143022-fix-auth-bug"
+      ]
+    },
+    {
+      "name": "create-ticket",
+      "description": "Create a new ticket in the issues tracking system",
+      "file": "commands/create-ticket.md",
+      "usage": "/create-ticket <title> [severity=<level>] [effort=<size>] [project=<name>]",
+      "category": "project",
+      "examples": [
+        "/create-ticket Fix Google Sign-in User ID Extraction",
+        "/create-ticket Fix login bug severity=Blocker effort=M project=<project-name>"
+      ]
+    },
+    {
+      "name": "handoff-report",
+      "description": "Create a detailed report of the work done and work that needs to be done for incomplete tickets",
+      "file": "commands/handoff-report.md",
+      "usage": "/handoff-report",
+      "category": "project",
+      "examples": [
+        "/handoff-report"
+      ]
+    },
+    {
+      "name": "lazy-request",
+      "description": "Transform my request into a structured brief, then execute it.",
+      "file": "commands/lazy-request.md",
+      "usage": "/lazy-request <user-request>",
+      "category": "project",
+      "examples": [
+        "/lazy-request Analyze the database schema and suggest optimizations",
+        "/lazy-request Create a marketing strategy for mobile app launch"
+      ]
+    },
+
+    {
+      "name": "migrate-files",
+      "description": "Migrate Misplaced Files Command",
+      "file": "commands/migrate-files.md",
+      "usage": "/migrate-files [--dry-run] [--auto-fix]",
+      "category": "project",
+      "examples": [
+        "/migrate-files --dry-run",
+        "/migrate-files --auto-fix"
+      ]
+    },
+    {
+      "name": "optimize-agent",
+      "description": "Select and optimize an agent using the agent-optimizer specialist",
+      "file": "commands/optimize-agent.md",
+      "usage": "/optimize-agent <agent-name>",
+      "category": "agent-management",
+      "examples": [
+        "/optimize-agent react-vite-engineer",
+        "/optimize-agent qa-engineer"
+      ]
+    },
+    {
+      "name": "design-loop",
+      "description": "Produce a design with a chosen agent, auto-QA it, and iterate once if it fails QA",
+      "file": "commands/design-loop.md",
+      "usage": "/design-loop <agent> <brief> [brand=<name>] [platform=<platform>]",
+      "category": "creative",
+      "examples": [
+        "/design-loop senior-frontend-layout-expert \"Create a login screen\" brand=<AppName> platform=mobile",
+        "/design-loop brand-designer \"Design logo for new app\""
+      ]
+    },
+    {
+      "name": "create-campaign",
+      "description": "Generate a zero-budget guerrilla marketing campaign for a product",
+      "file": "commands/create-campaign.md",
+      "usage": "/create-campaign <product-name> <category> <landing-url> <audience> <platform> [timeframe] [style]",
+      "category": "marketing",
+      "examples": [
+        "/create-campaign MyApp productivity reddit 7days educational",
+        "/create-campaign MyApp fitness-app discord meme-heavy"
+      ]
+    },
+    {
+      "name": "update-engineering-agents",
+      "description": "Systematically update all engineering agents with core standards and compliance",
+      "file": "commands/update-engineering-agents.md",
+      "usage": "/update-engineering-agents",
+      "category": "agent-management",
+      "examples": [
+        "/update-engineering-agents"
+      ]
+    },
+    {
+      "name": "start-ticket",
+      "description": "Start work on a ticket by routing it through the agent orchestration system",
+      "file": "commands/start-ticket.md",
+      "usage": "/start-ticket <ticket-id-or-path>",
+      "category": "project",
+      "examples": [
+        "/start-ticket 2024-09-25-143000-fix-login-bug",
+        "/start-ticket .claude/issues/2024-09-25-144500-performance-optimization.yaml"
+      ]
+    },
+    {
+      "name": "venture-pack",
+      "description": "Execute comprehensive multi-agent business strategy analysis workflow",
+      "file": "commands/venture-pack.md",
+      "usage": "/venture-pack <business-prompt> [constraints=<constraint-string>]",
+      "category": "business",
+      "examples": [
+        "/venture-pack \"AI businesses generating >$1M annual profit\"",
+        "/venture-pack \"Fintech solutions\" constraints=\"US market, <$100K capital\""
+      ]
+    }
+  ],
+  "metadata": {
+    "total_commands": 11,
+    "last_updated": "2026-02-27",
+    "categories": [
+      "project",
+      "agent-management",
+      "creative",
+      "marketing",
+      "business"
+    ]
+  }
+}
