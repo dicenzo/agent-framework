@@ -6,9 +6,11 @@ metadata:
   created_at: ""           # ISO timestamp
   created_by: ""           # Agent name or "user"
   project: ""              # your project or package name
+  working_directory: ""    # Absolute path to the project root
 
 ticket:
   title: ""                # Brief, descriptive title
+  type: ""                 # Task | Story | Bug
   severity: ""             # Blocker | Major | Minor
   effort: ""               # XS | S | M | L | XL
   status: "Open"           # Open | In Progress | Blocked | Resolved | Closed

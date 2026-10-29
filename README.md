@@ -16,7 +16,7 @@ The framework covers engineering work and also business, product, marketing, and
 ├── policies/            # Engineering, orchestration, file organization, tickets, writing, ...
 ├── workflows/           # Coordination, development, ticket, and handoff workflows
 ├── workflows.md         # Workflow navigation index
-├── templates/           # Work order template
+├── templates/           # Work order and handoff report templates
 ├── issues/template.yaml # Ticket schema
 ├── scripts/validate-lint.sh
 └── mcp_servers.md       # Place to list your MCP servers
@@ -41,9 +41,11 @@ flowchart LR
 ```
 
 ### Triage
+
 Rough requests go to `intent-translator` (directly, or through `/lazy-request`), which restates them as role, objective, approach, and output. Tickets enter through `/create-ticket`, `/assign-ticket`, and `/start-ticket`.
 
 ### Complexity score (0-10)
+
 `agent-orchestrator` scores each request on three dimensions:
 
 | Dimension | Points |
@@ -76,10 +78,10 @@ Files in `.claude/policies/` define what "done" means, and agents reference them
 `gatekeeper` checks completeness, accuracy, sources, consistency, professional quality, and actionability, and returns PASS, CONDITIONAL, or FAIL. Orchestrated work does not reach the user without a gatekeeper result.
 
 ### Ticket workflow
-Tickets are YAML files in `.claude/issues/` named `YYYY-MM-DD-HHMMSS-<slug>.yaml`, following `issues/template.yaml`. Each has severity (Blocker/Major/Minor), effort (XS-XL), status (Open, In Progress, Blocked, Resolved, Closed), acceptance criteria, and debugging fields for bugs. `/assign-ticket` maps the ticket's domain and effort to an agent; `/start-ticket` routes it through the orchestrator. Resolved tickets move to `.claude/issues/resolved/YYYY-MM/`.
+Tickets are YAML files in `.claude/issues/` named `YYYY-MM-DD-HHMMSS-<slug>.yaml`, following `issues/template.yaml`. Each has type (Task, Story, or Bug), severity (Blocker/Major/Minor), effort (XS-XL), status (Open, In Progress, Blocked, Resolved, Closed), project, working directory, acceptance criteria, and debugging fields for bugs. `/assign-ticket` maps the ticket's domain and effort to an agent; `/start-ticket` routes it through the orchestrator. Resolved tickets move to `.claude/issues/resolved/YYYY-MM/`.
 
 ### Handoff reports
-`/handoff-report` follows `workflows/handoff-report-workflow.md` to produce one standardized report per session: work completed, files changed, verification results, blockers by priority, and next steps, so a later session can resume without re-discovery.
+`/handoff-report` follows `workflows/handoff-report-workflow.md` and writes one report to `deliverables/reports/handoffs/`: work completed, files changed, verification results, blockers by priority, and next steps, so a later session can resume without re-discovery.
 
 ## Agent catalog
 

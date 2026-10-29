@@ -152,7 +152,7 @@ integration_failure_recovery:
 ## Available Workflows
 - **`direct-coordination-workflow.md`**: Simple 2-3 agent sequential coordination
 - **`complex-planning-direct-execution-workflow.md`**: Strategic planning + direct execution (4-6 agents)
-- **`complex-planning-delegated-execution-workflow.md`**: Enterprise planning + parallel execution (6+ agents)
+- **`complex-planning-delegated-execution-workflow.md`**: Enterprise planning + parallel execution (7 or more agents, or complexity score 7–10)
 
 ## Workflow Selection Process
 1. Assess project complexity using criteria in each workflow file

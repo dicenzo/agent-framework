@@ -10,7 +10,7 @@ This document defines the integration protocols, decision matrices, and standard
 |-----------------|-------------|------------------|---------------------|-------------------|
 | **Simple** | 2-3 agents | Sequential/basic parallel | agent-orchestrator | Direct coordination |
 | **Moderate** | 4-6 agents | Complex sequencing | agent-orchestrator | → workflow-orchestrator → agent-orchestrator |
-| **Complex** | 6+ agents | Parallel coordination | agent-orchestrator | → workflow-orchestrator → session-orchestrator |
+| **Complex** | 7–9 agents | Parallel coordination | agent-orchestrator | → workflow-orchestrator → session-orchestrator |
 | **Enterprise** | 10+ agents | Multi-session parallel | agent-orchestrator | → workflow-orchestrator → session-orchestrator |
 
 ### Decision Criteria
@@ -22,11 +22,11 @@ This document defines the integration protocols, decision matrices, and standard
 - **Avoid for**: Familiar 4-agent patterns with linear dependencies
 
 **Route to session-orchestrator when:**
-- Parallel agent coordination required (6+ agents)
+- Parallel agent coordination required (7 or more agents)
 - Multi-session state persistence needed
 - Complex dependency management required
 - Distributed agent synchronization needed
-- Context size exceeds 15k tokens
+- Context size exceeds 10,000 tokens
 
 **Fast-track direct coordination when:**
 - Sequential workflow with 2-4 agents

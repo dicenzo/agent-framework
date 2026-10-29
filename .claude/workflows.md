@@ -46,13 +46,13 @@ For detailed technical requirements and validation criteria, see `.claude/polici
 #### [Complex Planning + Delegated Execution](./workflows/complex-planning-delegated-execution-workflow.md)
 **Enterprise-grade workflow with planning and parallel execution**
 
-- High complexity (6+ agents)
+- High complexity (7 or more agents)
 - Strategic planning via workflow-orchestrator
 - Parallel execution via session-orchestrator
 - Multi-session state persistence
 - Complex dependency management
 
-**Use when:** Project requires both strategic planning and parallel coordination of 6+ agents with complex dependencies.
+**Use when:** Project requires both strategic planning and parallel coordination of 7 or more agents with complex dependencies.
 
 ---
 
@@ -97,7 +97,16 @@ For detailed technical requirements and validation criteria, see `.claude/polici
 - Severity guidelines (Blocker, Major, Minor)
 - Effort estimates (XS, S, M, L, XL)
 - Domain-to-agent routing
-- Automatic archive to `/resolved/YYYY-MM/` when resolved
+- Automatic archive to `.claude/issues/resolved/YYYY-MM/` when resolved
+
+#### [Handoff Report](./workflows/handoff-report-workflow.md)
+**One session report so the next session can resume**
+
+- Collect tickets, git status, and verification results before writing
+- Fill `.claude/templates/handoff-report-template.md`
+- Write exactly one file to `deliverables/reports/handoffs/`
+
+**Use when:** A session ends and the next one needs the current state.
 
 #### [File Persistence Protocol](./workflows/file-persistence-protocol.md)
 **Consistent file handling across agents**
@@ -120,16 +129,18 @@ For detailed technical requirements and validation criteria, see `.claude/polici
 |----------|------------|------------|--------------|
 | Simple task, linear deps | 2-3 | Low | [Direct Coordination](./workflows/direct-coordination-workflow.md) |
 | Multi-domain, some planning | 4-6 | Medium | [Complex Planning + Direct](./workflows/complex-planning-direct-execution-workflow.md) |
-| Complex dependencies, parallel | 6+ | High | [Complex Planning + Delegated](./workflows/complex-planning-delegated-execution-workflow.md) |
+| Complex dependencies, parallel | 7+ | High | [Complex Planning + Delegated](./workflows/complex-planning-delegated-execution-workflow.md) |
 | Any development task | Any | Any | [Development Workflow](./workflows/development-workflow.md) |
 | Issue tracking | Any | Any | [Ticket Management](./workflows/ticket-management.md) |
+| Session handoff report | 1 | Any | [Handoff Report](./workflows/handoff-report-workflow.md) |
 | **ALL** file modifications | Any | Any | [File Persistence Protocol](./workflows/file-persistence-protocol.md) |
 
 **Quick Decision Path:**
 1. **Does it involve code changes?** → Use [Development Workflow](./workflows/development-workflow.md)
 2. **Creating/managing tickets?** → Use [Ticket Management](./workflows/ticket-management.md)
-3. **How many agents needed?** → Use [Orchestration Matrix](./workflows/orchestration-protocols.md)
-4. **Writing ANY files?** → Apply [File Persistence Protocol](./workflows/file-persistence-protocol.md)
+3. **Ending a session?** → Use [Handoff Report](./workflows/handoff-report-workflow.md)
+4. **How many agents needed?** → Use [Orchestration Matrix](./workflows/orchestration-protocols.md). 2–3 agents use direct coordination, 4–6 use planning then direct execution, 7 or more use delegated execution.
+5. **Writing ANY files?** → Apply [File Persistence Protocol](./workflows/file-persistence-protocol.md)
 
 ---
 
@@ -138,7 +149,7 @@ For detailed technical requirements and validation criteria, see `.claude/polici
 ### With Agents (`/.claude/agents.md`)
 - **agent-orchestrator**: Entry point for complex requests, delegates based on complexity
 - **workflow-orchestrator**: Planning and optimization for 4+ agent workflows
-- **session-orchestrator**: Parallel execution management for 6+ agents
+- **session-orchestrator**: Parallel execution management for 7 or more agents
 - **gatekeeper**: Quality validation at checkpoints and final delivery
 - **context-manager** (optional community agent): Context handoffs for 10k+ token projects; session-orchestrator covers this when it is not installed
 
@@ -206,7 +217,7 @@ All workflows must adhere to these standards:
 - Every workflow must define clear handoff contexts
 - Maximum 3 retry attempts per stage
 - Mandatory deliverable tracking
-- Context budget enforcement at handoffs (15k tokens max)
+- Context budget enforcement at handoffs (10,000 tokens max)
 
 ### Quality Gates
 - Gatekeeper validation between major stages

@@ -58,7 +58,7 @@ while IFS= read -r -d '' file; do
     cp -p "$file" "$dest"
   fi
   copied=$((copied + 1))
-done < <(find "$SRC_DIR" -type f ! -name '.DS_Store' ! -name 'settings.local.json' -print0 | sort -z)
+done < <(find "$SRC_DIR" -type f ! -name '.DS_Store' ! -name 'settings.local.json' -print0)
 
 echo
 if [ "$DRY_RUN" -eq 1 ]; then

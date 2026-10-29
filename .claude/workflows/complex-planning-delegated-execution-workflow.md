@@ -1,10 +1,10 @@
 # Complex Planning + Delegated Execution Workflow
 
 ## Overview
-Enterprise-grade workflow for projects requiring sophisticated planning and parallel coordination of 6+ agents with complex dependencies and multi-session state management.
+Enterprise-grade workflow for projects requiring sophisticated planning and parallel coordination of 7 or more agents with complex dependencies and multi-session state management.
 
 ## Applicability Criteria
-- **Agent Count**: 6+ agents
+- **Agent Count**: 7 or more agents
 - **Coordination Type**: Parallel coordination with complex dependencies
 - **Complexity Level**: Complex to Enterprise
 - **Planning Needs**: Strategic planning with resource optimization
@@ -14,7 +14,7 @@ Enterprise-grade workflow for projects requiring sophisticated planning and para
 
 ### 1. Enterprise Complexity Assessment
 - Identify need for both strategic planning and parallel execution
-- Confirm 6+ agent requirement with complex dependencies
+- Confirm the work needs 7 or more agents with complex dependencies
 - Validate need for multi-session state persistence
 
 ### 2. Strategic Planning Delegation
@@ -124,7 +124,7 @@ coordination_progress:
 
 ## Decision Points
 **Use this workflow when:**
-- Project requires 6+ specialized agents
+- Project requires 7 or more specialized agents
 - Parallel coordination is essential for timeline
 - Complex dependency management required
 - Multi-session state persistence needed

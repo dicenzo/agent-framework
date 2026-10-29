@@ -1,40 +1,22 @@
 ---
-name: /design-loop
 description: Produce a design with a chosen agent, auto-QA it, and iterate once if it fails QA.
-args:
-  - name: agent
-    required: true
-    enum: [brand-designer, graphic-design-artist, typography-specialist, senior-frontend-layout-expert]  # ui-designer / ux-designer are optional community agents; add them here if installed
-  - name: brief
-    required: true
-  - name: brand
-    required: false
-  - name: platform
-    required: false
-steps:
-  - id: produce
-    agent: $agent
-    prompt: |
-      Create the requested deliverable. Summarize the acceptance criteria as bullets under "SPEC".
-      Return: {artifact: <link or inline>, spec: <bullets>, brand: {{brand}}, origin_agent: {{$agent}}, context: {platform: {{platform}}}}
-  - id: qa
-    agent: design-qa-reviewer
-    prompt: |
-      Review this:
-      {{steps.produce.output}}
-      Return ONLY the JSON block defined in your Output schema, then a terse human summary.
-  - id: maybe-revise
-    when: "{{steps.qa.output.overall_score < 85}}"
-    agent: $agent
-    prompt: |
-      Apply the following fix_plan and resubmit a revised artifact:
-      {{steps.qa.output.fix_plan}}
-      Return the *updated* {artifact, spec, brand, origin_agent, context}.
-  - id: re-qa
-    when: "{{steps.qa.output.overall_score < 85}}"
-    agent: design-qa-reviewer
-    prompt: |
-      Re-review the updated submission. Same JSON-first output.
-outputs:
-  - name: final
-    value: "{{ steps.re-qa.output || steps.qa.output }}"
+argument-hint: <agent> <brief> [brand=<name>] [platform=<platform>]
+allowed-tools: Task(*), Read(*), Write(*)
+---
+
+**Request**: $ARGUMENTS
+
+**Task**: Produce one design, have `design-qa-reviewer` score it, and revise once if the score is below 85.
+
+**Production agents**: `brand-designer`, `graphic-design-artist`, `typography-specialist`, `senior-frontend-layout-expert`. If the named agent is not in this list, stop and ask for one of these.
+
+**Instructions**:
+
+1. Parse `$ARGUMENTS` into the agent, the brief, and optional `brand=<name>` and `platform=<platform>`.
+2. Ask that agent to create the deliverable. The reply includes a SPEC as bullets, plus the artifact, brand, and origin agent. Save the artifact under `deliverables/designs/ui-ux/` (layout systems go under `deliverables/designs/architecture/`) per `.claude/policies/file-organization.md`.
+3. Ask `design-qa-reviewer` to review the deliverable against the SPEC. It returns a markdown scorecard and a JSON object with `overall_score` (0-100), `pass` (true only when the score is 85 or higher), and `fix_plan` (a list of changes).
+4. When `pass` is true, deliver the artifact path and the scorecard.
+5. When `pass` is false, send `fix_plan` back to the same production agent for one revision. Ask `design-qa-reviewer` to review that revision once. Deliver the revised artifact and the second scorecard even if the second score is still below 85.
+6. Do not run a third production pass.
+
+**Output**: artifact path, final `overall_score`, and whether `pass` is true.

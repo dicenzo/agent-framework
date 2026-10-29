@@ -25,7 +25,8 @@ OUTPUT: [Deliver in most useful format]
 
 **Orchestration Context**:
 ```
-**Restructured Request**: $ARGUMENTS
+**Original request**: $ARGUMENTS
+**Restructured brief**: the ROLE, OBJECTIVE, APPROACH, and OUTPUT produced in step 2. Pass that brief to agent-orchestrator. Do not substitute the original wording.
 **Working Directory**: .
 **MCP Servers**: See `.claude/mcp_servers.md` if configured
 

@@ -15,7 +15,7 @@ allowed-tools: Task(*), Read(*), Grep(*), Glob(*)
 
 2. Validate ticket exists and is readable
    - Read the ticket YAML file
-   - Verify it has required fields (title, description, severity, effort)
+   - Verify it has required fields from `.claude/policies/ticket-system.md`: title, type, severity, effort, project, working_directory, and description
 
 3. Invoke agent-orchestrator with full context:
    ```
@@ -27,7 +27,7 @@ allowed-tools: Task(*), Read(*), Grep(*), Glob(*)
    - Effort: [ticket.effort]
    - Status: [ticket.status]
 
-   Please follow the orchestration protocols (.claude/policies/orchestration-protocols.md) to:
+   Please follow the orchestration protocols (.claude/workflows/orchestration-protocols.md) to:
    1. Assess ticket complexity
    2. Determine appropriate agent(s) or orchestration pattern
    3. Coordinate resolution following development workflow (.claude/workflows/development-workflow.md)

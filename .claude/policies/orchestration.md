@@ -84,7 +84,7 @@ Keep only the 5 most recent updates in the README.
 |-----------|--------|---------------------|---------|
 | Simple | 2–3 | agent-orchestrator | Direct coordination |
 | Moderate | 4–6 | agent-orchestrator | → workflow-orchestrator → agent-orchestrator |
-| Complex | 6+ | agent-orchestrator | → workflow-orchestrator → session-orchestrator |
+| Complex | 7–9 | agent-orchestrator | → workflow-orchestrator → session-orchestrator |
 | Enterprise | 10+ | agent-orchestrator | → workflow-orchestrator → session-orchestrator |
 
 **Route to workflow-orchestrator when:**
@@ -93,9 +93,9 @@ Keep only the 5 most recent updates in the README.
 - Strategic planning required before execution
 
 **Route to session-orchestrator when:**
-- Parallel agent coordination required (6+ agents)
+- Parallel agent coordination required (7 or more agents)
 - Multi-session state persistence needed
-- Context size exceeds 15k tokens
+- Context size exceeds 10,000 tokens
 
 **Fast-track direct coordination when:**
 - Sequential workflow with 2–4 agents

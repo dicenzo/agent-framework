@@ -105,7 +105,7 @@ Optional community agents (for example `market-research-analyst`, `product-manag
 - Multiple domains with moderate interdependencies
 
 **Escalate to delegated execution when:**
-- Agent count approaches 6+
+- Agent count reaches 7 or more
 - Parallel coordination becomes unmanageable
 - Multi-session state persistence required
 - Execution complexity exceeds direct coordination capacity

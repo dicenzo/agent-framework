@@ -25,7 +25,7 @@ Provide lightweight, AI-friendly issue tracking across all active projects.
 - **Related Files**: Relevant code locations
 - **Assigned To**: Ownership tracking
 
-## Debugging Fields (Mandator for Bug/Issue Tickets)
+## Debugging Fields (Mandatory for Bug Tickets)
 - **Steps to Reproduce**: Numbered list of reproduction steps
 - **Expected Behavior**: What should happen normally
 - **Actual Behavior**: What actually occurs (the bug)
@@ -41,7 +41,7 @@ Provide lightweight, AI-friendly issue tracking across all active projects.
 1. **Open**: New, unassigned ticket
 2. **In Progress**: Actively being worked
 3. **Blocked**: Waiting on external dependency
-4. **Resolved**: Work complete, awaiting verification (archived to `/resolved/YYYY-MM/`)
+4. **Resolved**: Work complete, awaiting verification (archived to `.claude/issues/resolved/YYYY-MM/`)
 5. **Closed**: Verified complete and deployed
 
 ## Agent Responsibilities

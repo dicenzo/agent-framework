@@ -34,7 +34,7 @@ allowed-tools: Task(*), Read(*), Grep(*), Glob(*)
    - `updated_at: [current-timestamp]`
    - `status: "In Progress"`
 
-7. Ensure tickets reference using the ticket-managment workflow (.claude/workflows/ticket-management.md). 
+7. Ensure tickets reference the ticket-management workflow (.claude/workflows/ticket-management.md). 
 
 8. Ensure tickets assigned to the engineering team reference the development workflow (.claude/workflows/development-workflow.md).
 

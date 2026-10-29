@@ -1,6 +1,6 @@
 ---
 name: brand-research-analyst
-description: "Use this agent when you need comprehensive brand auditing, competitive analysis, or market positioning research. Examples: <example>Context: User needs to understand their brand's current market position before launching a rebrand initiative. "
+description: "Use this agent when you need comprehensive brand auditing, competitive analysis, or market positioning research. Examples: <example>Context: User needs to understand their brand's current market position before launching a rebrand. user: 'We are rebranding and need to know where we stand against competitors.' assistant: 'I'll use the brand-research-analyst agent to audit the current brand and map the competitive position.' <commentary>The user needs a brand audit and competitive positioning before a rebrand, so use the brand-research-analyst agent.</commentary></example>"
 model: sonnet
 ---
 

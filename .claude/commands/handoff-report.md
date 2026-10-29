@@ -12,7 +12,7 @@ allowed-tools: Read(*), Write(*), Bash(*), Glob(*), Grep(*)
 - ✅ Filename format: `YYYY-MM-DD-HHMMSS-<description>-handoff.md` (REQUIRED - include time with seconds)
 - ✅ Use ONLY the template from `.claude/templates/handoff-report-template.md` (do not add extra files)
 - ✅ Do NOT create additional files (no INDEX.md, MANIFEST.md, QUICK-REFERENCE.md, etc.)
-- ✅ Save to: `.claude/issues/handoff/` directory
+- ✅ Save to: `deliverables/reports/handoffs/` directory
 - ✅ Follow the workflow: `.claude/workflows/handoff-report-workflow.md`
 
 **Instructions**:
@@ -29,12 +29,12 @@ allowed-tools: Read(*), Write(*), Bash(*), Glob(*), Grep(*)
    - Categorize by stream/task if working on multi-stream tickets
 
 3. **Update Ticket Status**:
-   - For each ticket worked on:
-     - Update `status` field (In Progress, Blocked, or Resolved)
-     - Update `progress_percentage` based on completed vs remaining tasks
-     - Add detailed notes about what was accomplished
-     - Document any blockers or issues encountered
-     - Update `updated_at` timestamp
+   - For each ticket worked on, update only fields from `.claude/issues/template.yaml`:
+     - `ticket.status` (In Progress, Blocked, or Resolved)
+     - `tracking.updated_at`
+     - `tracking.resolution` when the work is finished
+     - `tracking.attempted_solutions` when a fix was tried
+   - Put the completion percentage and blockers in the handoff report
    - Write updated ticket files back to `.claude/issues/`
 
 4. **Quality Metrics Collection**:
@@ -59,21 +59,21 @@ allowed-tools: Read(*), Write(*), Bash(*), Glob(*), Grep(*)
 6. **Save Report**:
    - Generate filename: `YYYY-MM-DD-HHMMSS-<description>-handoff.md`
    - Description should be ticket slug or brief summary
-   - Save to: `.claude/issues/handoff/`
+   - Save to: `deliverables/reports/handoffs/`
    - Create directory if it doesn't exist
 
 7. **Verify Handoff Completeness**:
    - Ensure report contains enough context for seamless resumption
-   - Verify all file paths are absolute (not relative)
+   - Verify every file path is relative to the project root and does not start with `/`, `./`, or `../`
    - Confirm all ticket updates were saved
    - Check that critical blockers are clearly documented
 
 8. **File Output Validation** (REQUIRED - check before completing):
-   - [ ] Exactly ONE markdown file generated in `.claude/issues/handoff/`
+   - [ ] Exactly ONE markdown file generated in `deliverables/reports/handoffs/`
    - [ ] Filename matches format: `YYYY-MM-DD-HHMMSS-*-handoff.md` (with seconds)
    - [ ] File includes all required template sections from `.claude/templates/handoff-report-template.md`
    - [ ] No additional files created (no INDEX, MANIFEST, QUICK-REFERENCE, etc.)
-   - [ ] All file paths in report are absolute (not relative)
+   - [ ] All file paths in the report are project-root paths (no leading `/`, `./`, or `../`)
    - [ ] Report filename is returned to user
 
 **Report Sections (Required)**:

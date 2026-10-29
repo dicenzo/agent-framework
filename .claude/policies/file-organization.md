@@ -95,7 +95,7 @@ All agent deliverables MUST use these locations:
 
 #### Management Agents (project-manager, agent-orchestrator)
 - **STATUS**: `/deliverables/reports/status/`
-- **HANDOFFS**: `/deliverables/reports/handoffs/`
+- **HANDOFFS**: `/deliverables/reports/handoffs/` (`/handoff-report` writes its one session report here)
 - **NEVER**: `.claude/` internal directories
 
 ### 🔒 Enforcement Mechanisms
@@ -164,12 +164,11 @@ mv IMPLEMENTATION_*.md deliverables/reports/status/
 mv *_ANALYSIS.md deliverables/analysis/technical/
 ```
 
-### 🚨 Violations & Consequences
+### Violations
 
-1. **Build Failures**: CI/CD will FAIL if files are misplaced
-2. **PR Blocks**: PRs with misplaced files will be auto-rejected
-3. **Agent Scoring**: Violations reduce agent trust scores
-4. **Rollback**: Misplaced files are automatically deleted
+A misplaced file is a defect. Move it into the matching `/deliverables/` folder. Do not delete it as a cleanup step.
+
+This repository does not ship a CI job that checks these paths or deletes files. A project that wants that check can run the self-test command above.
 
 ### 📝 Examples
 
@@ -203,7 +202,7 @@ This policy is version-controlled and changes require:
 1. Review by senior engineering
 2. Update to all agent definitions
 3. Migration plan for existing files
-4. CI/CD rule updates
+4. Any project CI that checks these paths
 
 ### 📚 Related Policies
 

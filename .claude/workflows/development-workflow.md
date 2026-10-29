@@ -351,7 +351,7 @@ When lint issues prevent completion:
 - **Location**: `.claude/issues/`
 - **Format**: `YYYY-MM-DD-HHMMSS-<slug>.yaml`
 - **Template**: Use `/.claude/issues/template.yaml` as base
-- **Policy**: Follow `/policies/ticket-system.md` guidelines
+- **Policy**: Follow `.claude/policies/ticket-system.md`
 
 ---
 
@@ -364,7 +364,7 @@ When lint issues prevent completion:
 4. **Context Compression**: Remove unnecessary details while preserving essential information
 
 ### Context Efficiency Rules
-- **Maximum Context Size**: 15k tokens per handoff
+- **Maximum Context Size**: 10,000 tokens per handoff
 - **Essential Information Only**: Remove intermediate discussion, keep decisions and current state
 - **Structured Handoffs**: Use consistent format for agent-to-agent communication
 - **Context Validation**: Confirm understanding before proceeding to next stage
@@ -444,7 +444,7 @@ yarn tsc --noEmit                   # MUST EXIT 0
 ```
 
 ### Common Violations & Fixes
-See `.claude/policies/engineering.md` section **🧹 LINT COMPLIANCE PROTOCOL** for:
+See `.claude/policies/engineering.md` section **Lint Compliance — Zero Tolerance** for:
 - Import order fixes (auto-fixable)
 - React Hooks violations (conditional hooks)
 - Promise handling (async in handlers)

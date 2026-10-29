@@ -25,7 +25,9 @@ while IFS= read -r file; do
     violations+=("$file")
 
     # Determine proper location
-    if [[ "$file" =~ summary ]]; then
+    if [[ "$file" =~ handoff ]]; then
+      suggestions+=("deliverables/reports/handoffs/$(basename "$file")")
+    elif [[ "$file" =~ summary ]]; then
       suggestions+=("deliverables/reports/executive/$(basename "$file")")
     elif [[ "$file" =~ analysis|report ]]; then
       suggestions+=("deliverables/reports/incidents/$(basename "$file")")
@@ -51,7 +53,7 @@ while IFS= read -r file; do
       suggestions+=("deliverables/working/$(basename "$file")")
     fi
   fi
-done < <(find . -maxdepth 1 -type f -name "*.md" -o -name "*.txt" 2>/dev/null)
+done < <(find . -maxdepth 1 -type f \( -name "*.md" -o -name "*.txt" \) 2>/dev/null)
 
 # Check source directories
 while IFS= read -r file; do
@@ -201,15 +203,34 @@ Refs: .claude/policies/file-organization.md"
 
 ## Schedule Regular Checks
 
-Add to CI/CD:
-```yaml
-- name: Check file organization
-  run: |
-    .claude/commands/migrate-files.md --dry-run
-    if [ $? -ne 0 ]; then
-      echo "::error::Misplaced files detected. Run migrate-files command."
-      exit 1
-    fi
+This file is a slash-command prompt. Do not execute it as a shell script.
+
+A project CI job can run this check instead:
+
+```bash
+# Non-YAML files under .claude/issues, and markdown or text in the project root.
+violations=0
+while IFS= read -r -d '' file; do
+  case "$file" in
+    ./README.md) ;;
+    *)
+      echo "Misplaced root file: $file"
+      violations=$((violations + 1))
+      ;;
+  esac
+done < <(find . -maxdepth 1 -type f \( -name "*.md" -o -name "*.txt" \) -print0)
+
+if [ -d .claude/issues ]; then
+  while IFS= read -r -d '' file; do
+    echo "Non-YAML file in .claude/issues: $file"
+    violations=$((violations + 1))
+  done < <(find .claude/issues -type f ! -name "*.yaml" -print0)
+fi
+
+if [ "$violations" -ne 0 ]; then
+  echo "Misplaced files detected. Move them with /migrate-files."
+  exit 1
+fi
 ```
 
 ## Success Criteria

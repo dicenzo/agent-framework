@@ -30,12 +30,14 @@ Turn vague or rough ideas into iron-clad tickets with enough clarity and constra
    – **Project**: [active project name — check README.md or ask user if unclear]
 5. **LOCK** – Only after user sends **YES**, create a final **Ticket** using `/create-ticket`:
    – **Title**: Clear, actionable description
+   – **Type**: Task, Story, or Bug
+   – **Working directory**: Absolute path to the project root
    – **Description**: Detailed requirements and context
    – **Acceptance Criteria**: Clear completion criteria
    – **Related Files**: Relevant file paths if known
    – **Debugging Fields**: If it's a bug (steps to reproduce, expected vs actual behavior)
 6. **HANDOFF**
-   – Create the ticket using: `/create-ticket [description], severity: [level], effort: [size], project: [name], auto-assign: true`
+   – Create the ticket using: `/create-ticket <title> type=<Task|Story|Bug> severity=<level> effort=<size> project=<name> auto-assign=true`
    - **For software engineering tickets**: Include reference to compliance with `.claude/workflows/development-workflow.md`
    - Use auto-assignment to immediately route to appropriate specialist agent
    - Display ticket ID and assignment for tracking

@@ -6,7 +6,7 @@ Systematically update all engineering agents to include core development standar
 ## Execution Steps
 
 ### Phase 1: Audit Current Agents
-1. Review all agents in `/engineering/` directory
+1. Review all agents in `.claude/agents/engineering/`
 2. Identify agents missing policy integration
 3. Document current compliance gaps
 
@@ -15,7 +15,7 @@ For each engineering agent:
 1. Add policy reference section after role definition:
 ```markdown
 ## Development Standards Compliance
-Before any code work, follow the mandatory protocols in `../policies/engineering.md`:
+Before any code work, follow the mandatory protocols in `.claude/policies/engineering.md`:
 - Verify TypeScript compilation passes
 - Check linting status  
 - Confirm all tests pass
@@ -25,7 +25,7 @@ Before any code work, follow the mandatory protocols in `../policies/engineering
 ## Ticket System Integration
 For substantial work:
 - Create tickets using format: `YYYY-MM-DD-HHMMSS-<slug>.yaml`
-- Include required fields: Title, Severity, Effort, Project
+- Include required fields: Title, Type, Severity, Effort, Project, Working Directory
 - Update status throughout development
 - Reference ticket IDs in commits
 ```

@@ -14,11 +14,11 @@
       "name": "create-ticket",
       "description": "Create a new ticket in the issues tracking system",
       "file": "commands/create-ticket.md",
-      "usage": "/create-ticket <title> [severity=<level>] [effort=<size>] [project=<name>]",
+      "usage": "/create-ticket <title> [type=<Task|Story|Bug>] [severity=<level>] [effort=<size>] [project=<name>] [auto-assign=true]",
       "category": "project",
       "examples": [
-        "/create-ticket Fix Google Sign-in User ID Extraction",
-        "/create-ticket Fix login bug severity=Blocker effort=M project=<project-name>"
+        "/create-ticket Fix Google Sign-in User ID Extraction type=Bug severity=Major effort=M",
+        "/create-ticket Fix login bug type=Bug severity=Blocker effort=M project=my-app auto-assign=true"
       ]
     },
     {
@@ -83,8 +83,8 @@
       "usage": "/create-campaign <product-name> <category> <landing-url> <audience> <platform> [timeframe] [style]",
       "category": "marketing",
       "examples": [
-        "/create-campaign MyApp productivity reddit 7days educational",
-        "/create-campaign MyApp fitness-app discord meme-heavy"
+        "/create-campaign MyApp productivity https://example.com \"indie hackers\" reddit 7days educational",
+        "/create-campaign MyApp fitness-app https://example.com \"gym beginners\" discord 14days meme-heavy"
       ]
     },
     {

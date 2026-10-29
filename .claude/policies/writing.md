@@ -1,13 +1,17 @@
 # Writing Guidelines
 
-## **description:** Use this rule when writing audience-facing text that needs to sound natural, confident, and credible. apply when -Writing documentation, blog posts, articles, PRDs, or explanations.-Creating titles, summaries, or marketing copy where clarity matters.-Drafting UI/UX text, error messages, or onboarding content for users.-Editing prose that will be read by humans (internal or external). do not apply when -Generating raw code, config files, JSON, YAML, or schema definitions.-Producing command-line snippets, logs, or error traces.-Returning step-by-step debug output or token-saving summaries.-Internal scaffolding (e.g., placeholder text, boilerplate labels).
+## When this applies
+
+Use this policy for audience-facing text: documentation, articles, PRDs, titles, summaries, marketing copy, UI text, error messages, and onboarding.
+
+Skip it for code, config, JSON, YAML, schemas, command output, logs, and internal scaffolding.
 
 ## Voice and tone
 - Write like humans speak. Avoid corporate jargon and marketing fluff.
 - Be confident, credible and direct. Avoid softening phrases like "I think," "maybe," or "could."
 - Use active voice instead of passive voice.
 - Use positive phrasing-say what something _is_ rather than what it _isn't_
-- Say "you" more than "we" when addressing is_rather than what it _Isn"t：external audiences.
+- Say "you" more than "we" when addressing external audiences.
 - Use contractions like "I'll," "won't," and "can't" for a warmer tone.
 
 ## Specificity and evidence
@@ -37,14 +41,14 @@
 - 'attempt' - "try"
 - 'battle tested' → remove
 - 'best practices' → "proven approaches"
-- 'blazing fast/lightning fast' - "build XX& faster"
+- 'blazing fast/lightning fast' → "measurably faster"
 - 'business logic' → remove
 - 'cognitive load' → remove
 - 'commence' → "start"
 - 'delve' - "go into"
 - 'disrupt/disruptive' - remove
 - 'facilitate' - "help" or "ease"
-- 'game-changing - specific benefit
+- 'game-changing' → a specific benefit
 - 'great' → remove or be specific
 - 'implement' → "do"
 - 'individual' → "man" or "woman"

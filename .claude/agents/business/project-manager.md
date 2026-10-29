@@ -34,7 +34,7 @@ max_output_tokens: 4000
   - Use TodoWrite for complex projects (3+ steps) to track progress transparently
   - Delegate domain expertise: technical-architect for tech planning, marketing-expert for campaigns
   - Escalate blockers proactively; create tickets for issues requiring >3 resolution attempts
-  - Maintain context budgets <15k tokens; engage session-orchestrator (or the optional community context-manager) for larger projects
+  - Keep each handoff at or below 10,000 tokens; engage session-orchestrator (or the optional community context-manager) when a project exceeds that budget
 
   **Risk Management:**
   - Document meaningful risks with mitigation strategies

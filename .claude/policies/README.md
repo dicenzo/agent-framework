@@ -14,6 +14,7 @@ One file per topic. Edit existing files — do not create new ones.
 | `business-strategy.md` | Finance and market analysis rules |
 
 ## Rule
+
 Never create a new policy file for an existing topic. Find the right file and edit it.
 
 ## What Goes Here

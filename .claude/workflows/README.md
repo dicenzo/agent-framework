@@ -9,16 +9,18 @@ workflows/
 ├── README.md (this file)
 │
 ├── Orchestration & Coordination
-├── direct-coordination-workflow.md
-├── complex-planning-direct-execution-workflow.md
-├── complex-planning-delegated-execution-workflow.md
+│   ├── orchestration-protocols.md
+│   ├── direct-coordination-workflow.md
+│   ├── complex-planning-direct-execution-workflow.md
+│   └── complex-planning-delegated-execution-workflow.md
 │
 ├── Development & Engineering
-├── development-workflow.md ⭐ PRIMARY DEV WORKFLOW
+│   ├── development-workflow.md ⭐ PRIMARY DEV WORKFLOW
+│   └── file-persistence-protocol.md
 │
-├── Operations & Management
-├── ticket-management.md
-└── handoff-report-workflow.md
+└── Operations & Management
+    ├── ticket-management.md
+    └── handoff-report-workflow.md
 ```
 
 ## Primary Workflow
@@ -50,7 +52,7 @@ workflows/
 |----------|------------|------------|--------------|
 | Simple task, linear deps | 2-3 | Low | direct-coordination-workflow.md |
 | Multi-domain, some planning | 4-6 | Medium | complex-planning-direct-execution-workflow.md |
-| Complex dependencies, parallel | 6+ | High | complex-planning-delegated-execution-workflow.md |
+| Complex dependencies, parallel | 7+ | High | complex-planning-delegated-execution-workflow.md |
 | **Any development task** | **Any** | **Any** | **development-workflow.md** |
 | Issue tracking | Any | Any | ticket-management.md |
 | Session handoff report | 1 | Any | handoff-report-workflow.md |
@@ -72,8 +74,10 @@ Does it involve code changes?
                        How many agents needed?
                        ├─ 2-3 → direct-coordination-workflow.md
                        ├─ 4-6 → complex-planning-direct-execution-workflow.md
-                       └─ 6+  → complex-planning-delegated-execution-workflow.md
+                       └─ 7+  → complex-planning-delegated-execution-workflow.md
 ```
+
+Any task that writes files also follows `file-persistence-protocol.md`.
 
 ## Workflow vs Policy vs Spec
 

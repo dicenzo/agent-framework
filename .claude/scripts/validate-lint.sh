@@ -54,7 +54,7 @@ else
   echo "  - Console logs: Replace with logger"
   echo ""
   echo "📖 See .claude/policies/engineering.md"
-  echo "   Section: 🧹 LINT COMPLIANCE PROTOCOL"
+  echo "   Section: Lint Compliance — Zero Tolerance"
   exit 1
 fi
 
@@ -78,35 +78,61 @@ echo "📋 Step 4: Checking for forbidden patterns..."
 echo "----------------------------------------------"
 
 FORBIDDEN_FOUND=0
+SCAN_SKIPPED=0
+SOURCE_DIRS=()
+for dir in src app apps packages; do
+  if [ -d "$dir" ]; then
+    SOURCE_DIRS+=("$dir")
+  fi
+done
 
-# Check for 'any' types (excluding comments and test files)
-if grep -r ": any" src/ --include="*.ts" --include="*.tsx" --exclude-dir=node_modules 2>/dev/null | grep -v "//.*: any" | grep -v "__tests__" >/dev/null; then
-  echo "⚠️  WARNING: Found ': any' types in code"
-  echo "   Replace with 'unknown' + type guards"
-  FORBIDDEN_FOUND=1
-fi
-
-# Check for @ts-ignore
-if grep -r "@ts-ignore" src/ --include="*.ts" --include="*.tsx" --exclude-dir=node_modules 2>/dev/null; then
-  echo "⚠️  WARNING: Found '@ts-ignore' comments"
-  echo "   Fix underlying type issues instead"
-  FORBIDDEN_FOUND=1
-fi
-
-# Check for improperly typed catch blocks
-if grep -r "catch.*:" src/ --include="*.ts" --include="*.tsx" --exclude-dir=node_modules 2>/dev/null | grep -v "unknown" | grep -v "//" >/dev/null; then
-  echo "⚠️  WARNING: Found catch blocks without 'unknown' type"
-  echo "   Use: catch (error: unknown)"
-  FORBIDDEN_FOUND=1
-fi
-
-if [ $FORBIDDEN_FOUND -eq 0 ]; then
-  echo "✅ PASS: No forbidden patterns found"
+if [ ${#SOURCE_DIRS[@]} -eq 0 ]; then
+  echo "⚠️  No src, app, apps, or packages directory found"
+  echo "   Skipped forbidden-pattern scan"
+  SCAN_SKIPPED=1
 else
-  echo ""
-  echo "⚠️  Forbidden patterns detected (warnings only)"
+  # Explicit `any` (comment lines that mention the pattern are ignored)
+  ANY_MATCHES=$(grep -R -n -E ': any([^[:alnum:]_]|$)' "${SOURCE_DIRS[@]}" \
+    --include="*.ts" --include="*.tsx" --exclude-dir=node_modules 2>/dev/null \
+    | grep -v -E "//.*: any" | grep -v "__tests__" || true)
+  if [ -n "$ANY_MATCHES" ]; then
+    echo "❌ FAIL: Found ': any' types"
+    echo "   Replace with 'unknown' and type guards"
+    echo "$ANY_MATCHES"
+    FORBIDDEN_FOUND=1
+  fi
+
+  TS_IGNORE=$(grep -R -n "@ts-ignore" "${SOURCE_DIRS[@]}" \
+    --include="*.ts" --include="*.tsx" --exclude-dir=node_modules 2>/dev/null || true)
+  if [ -n "$TS_IGNORE" ]; then
+    echo "❌ FAIL: Found '@ts-ignore' comments"
+    echo "   Fix the underlying type error"
+    echo "$TS_IGNORE"
+    FORBIDDEN_FOUND=1
+  fi
+
+  # Type annotation inside the catch parentheses. `unknown` is the required type.
+  # The match stops at the closing parenthesis, so a colon in the catch body is ignored.
+  CATCH_MATCHES=$(grep -R -n -E "catch[[:space:]]*\([^)]*:[^)]*\)" "${SOURCE_DIRS[@]}" \
+    --include="*.ts" --include="*.tsx" --exclude-dir=node_modules 2>/dev/null \
+    | grep -v -E "catch[[:space:]]*\([^)]*:[[:space:]]*unknown[[:space:]]*\)" || true)
+  if [ -n "$CATCH_MATCHES" ]; then
+    echo "❌ FAIL: Found catch parameters typed as something other than 'unknown'"
+    echo "   Use: catch (error: unknown)"
+    echo "$CATCH_MATCHES"
+    FORBIDDEN_FOUND=1
+  fi
 fi
 
+if [ "$FORBIDDEN_FOUND" -ne 0 ]; then
+  echo ""
+  echo "❌ FAIL: Forbidden patterns detected"
+  echo "📖 See .claude/policies/engineering.md"
+  echo "   Section: Lint Compliance — Zero Tolerance"
+  exit 1
+fi
+
+echo "✅ PASS: No forbidden patterns found"
 echo ""
 echo "=============================="
 echo "✅ VALIDATION COMPLETE"
@@ -115,10 +141,10 @@ echo ""
 echo "Summary:"
 echo "  ✅ Lint: Zero errors and warnings"
 echo "  ✅ TypeScript: No type errors"
-if [ $FORBIDDEN_FOUND -eq 1 ]; then
-  echo "  ⚠️  Code quality: Warnings found (review above)"
+if [ "$SCAN_SKIPPED" -eq 1 ]; then
+  echo "  ⚠️  Code quality: Forbidden-pattern scan skipped (no source directory)"
 else
-  echo "  ✅ Code quality: No issues"
+  echo "  ✅ Code quality: No forbidden patterns"
 fi
 echo ""
 echo "Task is ready for completion."

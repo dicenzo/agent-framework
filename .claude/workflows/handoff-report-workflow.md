@@ -58,7 +58,7 @@
    - Header: Date, Time (with HHMMSS), Ticket IDs, Status, Progress %
    - Executive Summary: 3-5 bullet points
    - Session Metrics: Statistics table
-   - Deliverables: By stream/task with absolute paths
+   - Deliverables: By stream/task with project-root paths
    - What's Working Now: Completed features
    - What Needs to Be Done: Remaining tasks with estimates
    - Known Issues & Blockers: Categorized HIGH/MEDIUM/LOW
@@ -66,12 +66,12 @@
    - File Changes: Created/Modified/Deleted with line counts
    - Next Session Kickoff: Clear instructions
    - Testing Instructions: Verification steps
-   - Reference Documents: Key files with absolute paths
+   - Reference Documents: Key files with project-root paths
 
 3. **Validate Content Completeness**
    - [ ] All template sections filled
-   - [ ] All file paths are absolute (start with `/`)
-   - [ ] No relative paths (no `./` or `../`)
+   - [ ] Every file path is relative to the project root (`deliverables/...`, `.claude/issues/...`)
+   - [ ] No path starts with `/`, `./`, or `../` (a leading `/` is the filesystem root, so `ls` would miss the file)
    - [ ] All placeholders replaced
    - [ ] Metrics are concrete numbers (not [XX])
 
@@ -117,17 +117,17 @@
 
 **Objective**: Write EXACTLY ONE file to the handoff directory.
 
-**Path**: `.claude/issues/handoff/[generated-filename]`
+**Path**: `deliverables/reports/handoffs/[generated-filename]`
 
 **Process**:
 1. Create directory if needed:
    ```bash
-   mkdir -p .claude/issues/handoff
+   mkdir -p deliverables/reports/handoffs
    ```
 
 2. Write the single file:
    ```
-   Write: .claude/issues/handoff/[YYYY-MM-DD-HHMMSS-description-handoff.md]
+   Write: deliverables/reports/handoffs/[YYYY-MM-DD-HHMMSS-description-handoff.md]
    Content: [populated template from Phase 2]
    ```
 
@@ -150,16 +150,16 @@
 
 ```bash
 # Count files in handoff directory created this session
-ls -lt .claude/issues/handoff/ | head -5
+ls -lt deliverables/reports/handoffs/ | head -5
 ```
 
-- [ ] **Exactly ONE new file** created in `.claude/issues/handoff/`
+- [ ] **Exactly ONE new file** created in `deliverables/reports/handoffs/`
 - [ ] **Filename format** matches: `YYYY-MM-DD-HHMMSS-*-handoff.md`
 - [ ] **Date in filename** matches today's date
 - [ ] **Time in filename** includes seconds (HHMMSS)
 - [ ] **Suffix** is `-handoff.md`
 - [ ] **Template sections** are all present in file
-- [ ] **File paths** in report are absolute (verified with grep)
+- [ ] **File paths** in the report are project-root paths (no leading `/`, `./`, or `../`)
 - [ ] **No additional files** created (INDEX, MANIFEST, etc.)
 
 **If Validation Fails**:
@@ -182,7 +182,7 @@ ls -lt .claude/issues/handoff/ | head -5
 ✅ Handoff report generated successfully
 
 📄 Report saved to:
-   .claude/issues/handoff/[YYYY-MM-DD-HHMMSS-description-handoff.md]
+   deliverables/reports/handoffs/[YYYY-MM-DD-HHMMSS-description-handoff.md]
 
 📊 Session Summary:
    - Tickets updated: [count]
@@ -200,7 +200,7 @@ ls -lt .claude/issues/handoff/ | head -5
 
 **Final Checklist**:
 - [ ] User informed of single file location
-- [ ] Absolute path provided
+- [ ] Project-root path provided
 - [ ] Brief summary included
 - [ ] Next steps highlighted
 
@@ -210,7 +210,7 @@ ls -lt .claude/issues/handoff/ | head -5
 
 ### If Multiple Files Were Created
 
-**Detection**: More than one file in `.claude/issues/handoff/` with today's timestamp
+**Detection**: More than one file in `deliverables/reports/handoffs/` with today's timestamp
 
 **Resolution**:
 1. Identify which file follows the standard: `YYYY-MM-DD-HHMMSS-*-handoff.md`
@@ -250,6 +250,7 @@ ls -lt .claude/issues/handoff/ | head -5
 - **Template**: `.claude/templates/handoff-report-template.md`
 
 ### Policy Compliance
+- **File placement**: `.claude/policies/file-organization.md` (`deliverables/reports/handoffs/`)
 - **Deliverable Verification**: `.claude/policies/orchestration.md`
 - **Development Standards**: `.claude/policies/engineering.md`
 
@@ -265,8 +266,8 @@ ls -lt .claude/issues/handoff/ | head -5
 - ✅ Create exactly ONE markdown file
 - ✅ Use filename format: `YYYY-MM-DD-HHMMSS-description-handoff.md`
 - ✅ Include all template sections
-- ✅ Use absolute file paths throughout
-- ✅ Save to `.claude/issues/handoff/` directory
+- ✅ Use project-root paths throughout (no leading `/`)
+- ✅ Save to `deliverables/reports/handoffs/` directory
 - ✅ Pass validation gate checklist
 - ✅ Inform user of single file location
 
@@ -274,7 +275,7 @@ ls -lt .claude/issues/handoff/ | head -5
 - ❌ Creating multiple files (INDEX, MANIFEST, QUICK-REFERENCE)
 - ❌ Using wrong filename format (no time, wrong date format, no -handoff suffix)
 - ❌ Missing template sections
-- ❌ Using relative file paths
+- ❌ Prefixing paths with `/`, `./`, or `../`
 - ❌ Creating "helpful" supplementary files
 
 ---
